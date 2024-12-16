@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Bookstore</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #4a47a3;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .book-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 30%;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .book-card h3 {
+            margin: 10px 0;
+        }
+
+        .book-card p {
+            color: #555;
+        }
+
+        .book-card button {
+            background-color: #4a47a3;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .book-card button:hover {
+            background-color: #5c57b6;
+        }
+
+        /* Cart Section */
+        .cart {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .cart h2 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .cart ul {
+            list-style: none;
+        }
+
+        .cart li {
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .total {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Online Bookstore Management</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Book Cards -->
+        <div class="book-card">
+            <h3>The Alchemist</h3>
+            <p>By Paulo Coelho</p>
+            <p>Price: $10</p>
+            <button onclick="addToCart('The Alchemist', 10)">Add to Cart</button>
+        </div>
+        <div class="book-card">
+            <h3>1984</h3>
+            <p>By George Orwell</p>
+            <p>Price: $12</p>
+            <button onclick="addToCart('1984', 12)">Add to Cart</button>
+        </div>
+        <div class="book-card">
+            <h3>To Kill a Mockingbird</h3>
+            <p>By Harper Lee</p>
+            <p>Price: $15</p>
+            <button onclick="addToCart('To Kill a Mockingbird', 15)">Add to Cart</button>
+        </div>
+        <div class="book-card">
+            <h3>Atomic Habits</h3>
+            <p>By James Clear</p>
+            <p>Price: $20</p>
+            <button onclick="addToCart('Atomic Habits', 20)">Add to Cart</button>
+        </div>
+        <div class="book-card">
+            <h3>Clean Code</h3>
+            <p>By Robert C. Martin</p>
+            <p>Price: $30</p>
+            <button onclick="addToCart('Clean Code', 30)">Add to Cart</button>
+        </div>
+        <div class="book-card">
+            <h3>JavaScript: The Good Parts</h3>
+            <p>By Douglas Crockford</p>
+            <p>Price: $25</p>
+            <button onclick="addToCart('JavaScript: The Good Parts', 25)">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Cart Section -->
+    <div class="cart container">
+        <h2>Your Cart</h2>
+        <ul id="cart-items">
+            <!-- Cart items will appear here -->
+        </ul>
+        <div class="total">Total: $<span id="total-price">0</span></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const cartItems = [];
+        const cartList = document.getElementById('cart-items');
+        const totalPriceElement = document.getElementById('total-price');
+        let totalPrice = 0;
+
+        function addToCart(bookName, bookPrice) {
+            // Add book to cart array
+            cartItems.push({ name: bookName, price: bookPrice });
+
+            // Update Cart UI
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${bookName}</span> <span>$${bookPrice}</span>`;
+            cartList.appendChild(li);
+
+            // Update Total Price
+            totalPrice += bookPrice;
+            totalPriceElement.textContent = totalPrice;
+        }
+    </script>
+</body>
+</html>
